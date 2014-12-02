@@ -1,6 +1,15 @@
 <?php
 const USERS = {"david","jeremie","hugo","sebastien","paul","melina","mickael","alfred","alexis","tristan","alexandre","jules"};
 
+function print_error($code, $msg){
+  http_response_code($code);
+  $erreur["code"] = 404;
+  $erreur["message"] = $msg;
+  echo json_encode($erreur);
+  exit;
+
+}
+
 /*
 * POST /logger.php?user={user}
 * Data en JSON
@@ -20,19 +29,13 @@ if(isset($_GET["user"]) && !empty($HTTP_RAW_POST_DATA)){
       http_response_code(201);
     }
     else{
-      http_response_code(400);
-      $erreur["code"] = 400;
-      $erreur["message"] = "Empty post data";
+      print_error(400,"Empty post data");
     }
   }
   else{
-    http_response_code(404);
-    $erreur["code"] = 404;
-    $erreur["message"] = "User not found";
+    print_error(404,"User not found");
   }
 }
 else {
-  http_response_code(400);
-  $erreur["code"] = 400;
-  $erreur["message"] = "Empty post data or empty user";
+  print_error(400,"Empty post data or empty user");
 }
