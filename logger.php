@@ -1,5 +1,5 @@
 <?php
-const USERS = {"david","jeremie","hugo","sebastien","paul","melina","mickael","alfred","alexis","tristan","alexandre","jules"};
+$users = array("david","jeremie","hugo","sebastien","paul","melina","mickael","alfred","alexis","tristan","alexandre","jules");
 
 function print_error($code, $msg){
   http_response_code($code);
@@ -18,7 +18,7 @@ function print_error($code, $msg){
 */
 if(isset($_GET["user"]) && !empty($HTTP_RAW_POST_DATA)){
   $user = $_GET["user"];
-  if(in_array($user,USERS)){
+  if(in_array($user,$users)){
     $newData = json_decode($HTTP_RAW_POST_DATA);
     if(!empty($newData)){
       $file = file_get_contents($user.'.json');
