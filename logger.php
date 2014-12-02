@@ -3,10 +3,12 @@ const USERS = {"david","jeremie","hugo","sebastien","paul","melina","mickael","a
 
 function print_error($code, $msg){
   http_response_code($code);
+  header('Cache-Control: no-cache, must-revalidate');
+  header('Content-type: application/json');
   $erreur["code"] = 404;
   $erreur["message"] = $msg;
   echo json_encode($erreur);
-  exit;
+  exit(1);
 
 }
 
