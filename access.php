@@ -1,7 +1,6 @@
 <?php
 if(isset($_GET["user"])){
   $user = $_GET["user"];
-  http_response_code($code);
   $semRes = sem_get(SEM_KEY, 1, 0666, 0); 
   if(sem_acquire($semRes)) {
   	$file = file_get_contents($user.'.json');
