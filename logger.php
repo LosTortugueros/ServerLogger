@@ -21,8 +21,6 @@ if(isset($_GET["user"]) && !empty($HTTP_RAW_POST_DATA)){
   if(in_array($user,$users)){
     $newData = json_decode($HTTP_RAW_POST_DATA);
     if(!empty($newData)){
-      $semRes = sem_get(SEM_KEY, 1, 0666, 0); 
-  	  if(sem_acquire($semRes)) {
       	$file = file_get_contents($user.'.json');
       	$data = json_decode($file);
      	 unset($file);
@@ -30,8 +28,6 @@ if(isset($_GET["user"]) && !empty($HTTP_RAW_POST_DATA)){
      	 file_put_contents($user.'.json',json_encode($data));
       		unset($data);
       		unset($newData);
-      		sem_release($semRes); // release the semaphore so other process can use it
-    	}
       http_response_code(201);
     }
     else{
