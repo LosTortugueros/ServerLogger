@@ -1,5 +1,5 @@
 <?php
-if(isset($_GET["user"]){
+if(isset($_GET["user"])){
   $user = $_GET["user"];
   http_response_code($code);
   $semRes = sem_get(SEM_KEY, 1, 0666, 0); 
@@ -13,3 +13,4 @@ if(isset($_GET["user"]){
   header('Content-type: application/json');
   echo $data;
 }
+?>
